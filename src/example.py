@@ -1,5 +1,4 @@
 from api import HikkaOAuthClient
-import uuid
 
 # --------------------------
 # Приклад використання (локальний сценарій)
@@ -11,10 +10,8 @@ def example_usage():
     )
 
     # 1) Генеруємо URL згоди
-    state = uuid.uuid4().hex
     url = client.build_authorize_url(
         scopes=["read:user-details", "read:watchlist"],
-        state=state,
     )
     print("Відкрий у браузері та авторизуйся:", url)
 

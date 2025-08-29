@@ -84,8 +84,6 @@ class HikkaOAuthClient:
         self,
         *,
         scopes: Optional[Iterable[str]] = None,
-        state: Optional[str] = None,
-        extra_params: Optional[Mapping[str, str]] = None,
     ) -> str:
         """
         Формує посилання на сторінку згоди Hikka.
