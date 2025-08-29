@@ -62,7 +62,7 @@ class HikkaOAuthClient:
 
     def __init__(
         self,
-        *,
+        
         client_reference: str,                 # ідентифікатор твого клієнта в Hikka
         client_secret: str,                    # секрет твого клієнта
         auth_base: Optional[str] = None,
@@ -82,7 +82,7 @@ class HikkaOAuthClient:
     # --------------------------
     def build_authorize_url(
         self,
-        *,
+        
         scopes: Optional[Iterable[str]] = None,
     ) -> str:
         """
@@ -102,7 +102,7 @@ class HikkaOAuthClient:
     # --------------------------
     def exchange_request_reference(
         self,
-        *,
+        
         request_reference: str,
         extra: Optional[Mapping[str, object]] = None,
     ) -> HikkaToken:
@@ -129,7 +129,7 @@ class HikkaOAuthClient:
     # --------------------------
     # 3) Отримати профіль поточного користувача
     # --------------------------
-    def get_current_user(self, *, secret: str) -> Mapping[str, object]:
+    def get_current_user(self,  secret: str) -> Mapping[str, object]:
         """
         GET /user/me  з заголовком  Auth: <secret>
         """
@@ -142,7 +142,7 @@ class HikkaOAuthClient:
     # --------------------------
     # Додатково: інфо про токен / відкликання
     # --------------------------
-    def get_token_info(self, *, secret: str) -> Mapping[str, object]:
+    def get_token_info(self,  secret: str) -> Mapping[str, object]:
         url = f"{self.api_base}{self.TOKEN_INFO_PATH}"
         r = self.http.get(url, headers={"Auth": secret}, timeout=self.timeout)
         if r.status_code >= 400:
@@ -151,7 +151,7 @@ class HikkaOAuthClient:
             )
         return r.json()
 
-    def revoke_token(self, *, token_reference: str) -> None:
+    def revoke_token(self,  token_reference: str) -> None:
         url = f"{self.api_base}{self.TOKEN_REVOKE_PATH.format(token_reference=token_reference)}"
         r = self.http.delete(url, timeout=self.timeout)
         if r.status_code >= 400:
